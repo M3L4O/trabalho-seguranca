@@ -20,12 +20,11 @@ def sign_file(file, key_file, hash_algorithm):
         raise ValueError("Algoritmo de hash inválido")
     hasher.update(data)
     hash_digest = hasher.digest()
-    print(hasher.hexdigest())
 
     private_key = load_key(key_file, True)
     signature = private_key.sign(hash_digest, padding.PKCS1v15(), prehashed)
 
-    signature_file = file + ".sig"
+    signature_file = ph.basename(file).split(".")[0] + ".sig"
     with open(signature_file, "wb") as f:
         f.write(base64.b64encode(signature))
 
@@ -48,8 +47,6 @@ def verify_signature(file, signature_file, key_file, hash_algorithm):
     hasher.update(data)
     hash_digest = hasher.digest()
 
-    print(hasher.hexdigest())
-
     with open(signature_file, "rb") as f:
         signature = base64.b64decode(f.read())
 
@@ -65,12 +62,12 @@ def verify_signature(file, signature_file, key_file, hash_algorithm):
 # Exemplo de uso
 def main():
     # private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
-    keys_file = ph.abspath("../keys.pem")
+    keys_file = ph.abspath("./keys.pem")
     # save_key(private_key, keys_file, True)
     # save_key(private_key.public_key(), keys_file)
-    file = ph.abspath("../message")
-    signature_file = ph.abspath("../message.sig")
-    # sign_file(file, keys_file, "sha512")
+    file = ph.abspath("./message")
+    signature_file = ph.abspath("./message.sig")
+    sign_file(file, keys_file, "sha512")
     if verify_signature(file, signature_file, keys_file, "sha512"):
         print("É  o mesmo arquivo")
     else:
