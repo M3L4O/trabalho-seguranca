@@ -1,6 +1,6 @@
 import hashlib
 import base64
-from utils import load_key, save_key
+from modules.utils import load_key
 from os import path as ph
 from cryptography.hazmat.primitives.asymmetric import rsa, padding, utils
 from cryptography.hazmat.primitives import serialization, hashes
