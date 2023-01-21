@@ -1,1 +1,6 @@
-keys.pem
+__pycache__/
+*.py[cod]
+
+*.pem
+*.sig
+*venv/
