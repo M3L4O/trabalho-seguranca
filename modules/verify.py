@@ -14,8 +14,8 @@ else:
 
 
 def get_args():
-    agp = argparse.ArgumentParser(prog='AssinarDocumento', 
-                                  description='Gera um documento com assinatura digital.')
+    agp = argparse.ArgumentParser(prog='verify.py', 
+                                  description='Verifica a assinatura digital de um documento.')
     
     agp.add_argument('file_path', help='Caminho para o arquivo a ser verificado.')
     agp.add_argument('signature_path', help='Caminho para o arquivo com a assinatura.')

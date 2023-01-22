@@ -13,7 +13,7 @@ else:
 
 
 def get_args():
-    agp = argparse.ArgumentParser(prog='AssinarDocumento', 
+    agp = argparse.ArgumentParser(prog='sign.py', 
                                   description='Gera um documento com assinatura digital.')
     
     agp.add_argument('file_path', help='Caminho para o arquivo a ser assinado.')
