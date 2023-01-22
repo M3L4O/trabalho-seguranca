@@ -1,4 +1,3 @@
-from pick import pick
 from os import path as ph
 
 from modules.rsa_gen_keys import generate_keys
