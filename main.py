@@ -20,15 +20,15 @@ def main():
     ]
     while True:
 
-        option, index = pick(options, title)
+        index = input("Selecione uma opção:\n" + "\n".join(options) + "\n")
         match index:
 
-            case 0:
+            case "0":
                 filepath = input("Informe em que pasta ficaram as chaves:\n~ ")
                 generate_keys(ph.abspath(filepath))
 
                 input("Tecle enter para voltar ao menu.")
-            case 1:
+            case "1":
                 file = input("Informe o caminho até o arquivo a ser assinado:\n~ ")
                 key_file = input(
                     "Informe o caminho até a chave privada que deseja utilizar:\n~ "
@@ -47,7 +47,7 @@ def main():
                 )
 
                 input("Tecle enter para voltar ao menu.")
-            case 2:
+            case "2":
                 file = input(
                     "Informe o caminho até o arquivo original que foi assinado:\n~ "
                 )
@@ -69,7 +69,7 @@ def main():
                     print("Assinatura não é válida.")
 
                 input("Tecle enter para voltar ao menu.")
-            case 3:
+            case "3":
                 return
 
 

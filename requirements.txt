@@ -56,7 +56,6 @@ outcome==1.2.0
 packaging==21.3
 pandas==1.5.2
 pep517==0.13.0
-pick==2.2.0
 platformdirs==2.5.4
 pluggy==1.0.0
 ply==3.11
