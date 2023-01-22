@@ -51,7 +51,7 @@ def main():
                 file = input(
                     "Informe o caminho até o arquivo original que foi assinado:\n~ "
                 )
-                signature_file = input("Informe o caminho até a assinatura:\n~")
+                signature_file = input("Informe o caminho até a assinatura:\n~ ")
                 key_file = input("Informe o caminho até a chave pública:\n~ ")
                 hash_algorithm = input(
                     "Qual algoritmo de hash deseja usar: [sha512, sha256]:\n> "

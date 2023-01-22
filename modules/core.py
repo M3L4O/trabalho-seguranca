@@ -24,7 +24,6 @@ def sign_file(file, signature_file, key_file, hash_algorithm):
     private_key = load_key(key_file, True)
     signature = private_key.sign(hash_digest, padding.PKCS1v15(), prehashed)
 
-    signature_file = file.split(".")[0] + ".sig"
     with open(signature_file, "wb") as f:
         f.write(base64.b64encode(signature))
 
