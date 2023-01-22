@@ -7,7 +7,10 @@ from cryptography.hazmat.primitives.asymmetric import padding, utils
 from cryptography.hazmat.primitives import hashes
 from cryptography.exceptions import InvalidSignature
 
-from utils import load_key
+if __name__ == '__main__':
+    from utils import load_key
+else:
+    from modules.utils import load_key
 
 _hash_dict = {
     'sha256' : { 

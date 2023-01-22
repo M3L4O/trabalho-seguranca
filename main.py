@@ -1,7 +1,9 @@
-from modules.core import sign_file, verify_signature
-from modules.utils import generate_keys
 from pick import pick
 from os import path as ph
+
+from modules.rsa_gen_keys import generate_keys
+from modules.sign import sign_file
+from modules.verify import verify_signature
 
 
 def main():
@@ -25,7 +27,7 @@ def main():
 
             case "0":
                 filepath = input("Informe em que pasta ficarão as chaves:\n~ ")
-                generate_keys(ph.abspath(filepath))
+                generate_keys(ph.abspath(filepath), verbose=True)
 
                 input("Tecle enter para voltar ao menu.")
             case "1":
@@ -44,6 +46,7 @@ def main():
                     ph.abspath(signature_file),
                     ph.abspath(key_file),
                     hash_algorithm,
+                    verbose=True
                 )
 
                 input("Tecle enter para voltar ao menu.")
@@ -62,6 +65,7 @@ def main():
                     ph.abspath(signature_file),
                     ph.abspath(key_file),
                     hash_algorithm,
+                    verbose=True
                 )
                 if is_valid:
                     print("Assinatura é válida.")

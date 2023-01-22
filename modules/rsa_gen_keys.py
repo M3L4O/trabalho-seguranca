@@ -1,7 +1,11 @@
 import argparse
 from cryptography.hazmat.primitives.asymmetric import rsa
 import os, os.path as ph
-from utils import save_key
+
+if __name__ == '__main__':
+    from utils import save_key
+else:
+    from modules.utils import save_key
 
 def get_args():
     key_size_choice = [ 1024 * _ for _ in range(1, 4) ]
