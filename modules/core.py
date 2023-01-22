@@ -24,10 +24,13 @@ def sign_file(file, key_file, hash_algorithm):
     private_key = load_key(key_file, True)
     signature = private_key.sign(hash_digest, padding.PKCS1v15(), prehashed)
 
-    signature_file = ph.basename(file).split(".")[0] + ".sig"
+    signature_file = file.split(".")[0] + ".sig"
     with open(signature_file, "wb") as f:
         f.write(base64.b64encode(signature))
 
+    print(
+        f"Assinatura Realizada...\nArquivo Assinado: {file}\nAssinatura: {signature_file}\nChave: {key_file}\nHash: {hash_algorithm}"
+    )
     return signature_file
 
 
@@ -51,6 +54,9 @@ def verify_signature(file, signature_file, key_file, hash_algorithm):
         signature = base64.b64decode(f.read())
 
     public_key = load_key(key_file, False)
+    print(
+        f"Verificação Realizada...\nArquivo Assinado: {file}\nAssinatura: {signature_file}\nChave: {key_file}\nHash: {hash_algorithm}"
+    )
 
     try:
         public_key.verify(signature, hash_digest, padding.PKCS1v15(), prehashed)

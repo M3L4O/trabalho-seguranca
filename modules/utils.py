@@ -1,6 +1,7 @@
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 from os import path as ph
+import os
 
 
 def load_key(filename, is_private):
@@ -29,10 +30,18 @@ def save_key(pk, filename, is_private=False):
     with open(filename, "ab") as pem_out:
         pem_out.write(pem)
 
+    if is_private:
+        print(f"Chave Privada salva em {filename}")
+    else:
+        print(f"Chave Pública salva em {filename}")
+
 
 def generate_keys(filepath):
     private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
     public_key = private_key.public_key()
+
+    if not ph.exists(filepath):
+        os.mkdir(filepath)
 
     save_key(private_key, ph.join(filepath, "private.pem"), True)
     save_key(public_key, ph.join(filepath, "public.pem"))
