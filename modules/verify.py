@@ -8,20 +8,9 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.exceptions import InvalidSignature
 
 if __name__ == '__main__':
-    from utils import load_key
+    from utils import _hash_dict, load_key
 else:
-    from modules.utils import load_key
-
-_hash_dict = {
-    'sha256' : { 
-        'hasher' : hashlib.sha256,
-        'prehashed' : utils.Prehashed(hashes.SHA256())
-    },
-    'sha512' : {
-        'hasher' : hashlib.sha512,
-        'prehashed' : utils.Prehashed(hashes.SHA512())
-    },
-}
+    from modules.utils import _hash_dict, load_key
 
 
 def get_args():
