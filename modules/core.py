@@ -7,7 +7,7 @@ from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.exceptions import InvalidSignature
 
 
-def sign_file(file, key_file, hash_algorithm):
+def sign_file(file, signature_file, key_file, hash_algorithm):
     with open(file, "rb") as f:
         data = f.read()
     if hash_algorithm == "sha256":

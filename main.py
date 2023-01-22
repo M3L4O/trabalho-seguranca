@@ -33,10 +33,18 @@ def main():
                 key_file = input(
                     "Informe o caminho até a chave privada que deseja utilizar:\n~ "
                 )
+                signature_file = input(
+                    "Informe o arquivo de saída para a assinatura.\n~ "
+                )
                 hash_algorithm = input(
                     "Qual algoritmo de hash deseja usar: [sha512, sha256]:\n> "
                 )
-                sign_file(ph.abspath(file), ph.abspath(key_file), hash_algorithm)
+                sign_file(
+                    ph.abspath(file),
+                    ph.abspath(signature_file),
+                    ph.abspath(key_file),
+                    hash_algorithm,
+                )
 
                 input("Tecle enter para voltar ao menu.")
             case 2:
