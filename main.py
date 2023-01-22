@@ -24,7 +24,7 @@ def main():
         match index:
 
             case "0":
-                filepath = input("Informe em que pasta ficaram as chaves:\n~ ")
+                filepath = input("Informe em que pasta ficarão as chaves:\n~ ")
                 generate_keys(ph.abspath(filepath))
 
                 input("Tecle enter para voltar ao menu.")

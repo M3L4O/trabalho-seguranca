@@ -15,15 +15,18 @@ def sign_file(file, signature_file, key_file, hash_algorithm):
         prehashed = utils.Prehashed(hashes.SHA256())
     elif hash_algorithm == "sha512":
         hasher = hashlib.sha512()
+        hasher2 = hashlib.sha512()
         prehashed = utils.Prehashed(hashes.SHA512())
     else:
         raise ValueError("Algoritmo de hash inválido")
     hasher.update(data)
     hash_digest = hasher.digest()
+    hasher2.update(hasher.hexdigest().encode())
 
     private_key = load_key(key_file, True)
-    signature = private_key.sign(hash_digest, padding.PKCS1v15(), prehashed)
+    signature = private_key.sign(hasher2.digest(), padding.PKCS1v15(), prehashed)
 
+    signature_file = file.split(".")[0] + ".sig"
     with open(signature_file, "wb") as f:
         f.write(base64.b64encode(signature))
 
@@ -42,12 +45,14 @@ def verify_signature(file, signature_file, key_file, hash_algorithm):
         prehashed = utils.Prehashed(hashes.SHA256())
     elif hash_algorithm == "sha512":
         hasher = hashlib.sha512()
+        hasher2 = hashlib.sha512()
         prehashed = utils.Prehashed(hashes.SHA512())
     else:
         raise ValueError("Algoritmo de hash inválido")
 
     hasher.update(data)
     hash_digest = hasher.digest()
+    hasher2.update(hasher.hexdigest().encode())
 
     with open(signature_file, "rb") as f:
         signature = base64.b64decode(f.read())
@@ -58,7 +63,7 @@ def verify_signature(file, signature_file, key_file, hash_algorithm):
     )
 
     try:
-        public_key.verify(signature, hash_digest, padding.PKCS1v15(), prehashed)
+        public_key.verify(signature, hasher2.digest(), padding.PKCS1v15(), prehashed)
         return True
     except InvalidSignature:
         return False
