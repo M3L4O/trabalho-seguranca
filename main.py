@@ -13,7 +13,7 @@ def main():
         choice = input(menu)
         match choice:
             case "1":
-                filepath = input("Informe em que pasta ficaram as chaves.")
+                filepath = input("Informe em que pasta ficarão as chaves.")
                 generate_keys(filepath)
             case "2":
                 file = input("Qual arquivo deseja assinar? ")
@@ -25,7 +25,7 @@ def main():
             case "3":
                 file = input("Qual arquivo que foi assinado? ")
                 signature_file = input("Caminho até o arquivo de assinatura: ")
-                key_file = input("Caminho até a chave privada: ")
+                key_file = input("Caminho até a chave pública: ")
                 hash_algorithm = input(
                     "Qual algoritmo de hash deseja usar: [sha512, sha256]: "
                 )
