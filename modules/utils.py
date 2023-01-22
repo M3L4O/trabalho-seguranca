@@ -2,15 +2,16 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 from os import path as ph
 import os
+import base64
 
 
 def load_key(filename, is_private):
     with open(filename, "rb") as pem_in:
         pemlines = pem_in.read()
     if is_private:
-        key = serialization.load_pem_private_key(pemlines, None)
+        key = serialization.load_pem_private_key(base64.b64decode(pemlines), None)
     else:
-        key = serialization.load_pem_public_key(pemlines)
+        key = serialization.load_pem_public_key(base64.b64decode(pemlines))
     return key
 
 
@@ -28,7 +29,7 @@ def save_key(pk, filename, is_private=False):
         )
 
     with open(filename, "ab") as pem_out:
-        pem_out.write(pem)
+        pem_out.write(base64.b64encode(pem))
 
     if is_private:
         print(f"Chave Privada salva em {filename}")
